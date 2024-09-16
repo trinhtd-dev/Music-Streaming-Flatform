@@ -1,0 +1,58 @@
+extends ../layouts/default
+
+block content
+  .home-content
+    .featured-section
+      h2 Featured
+      .featured-grid
+        each song in featuredSongs 
+          .featured-item
+            img(src=song.image, alt=song.title)
+            .content
+              h3= song.title
+              p= song.artist
+            button.play-button
+              i.fas.fa-play
+
+    .new-releases-section
+      h2 New Release 
+      .new-releases-grid
+        each song in newSongs 
+          .featured-item
+            img(src=song.image, alt=song.title)
+            h3= song.title
+            p= song.artist
+            button.play-button
+              i.fas.fa-play  
+    .top-100-section
+      h2 Top 100
+      .top-100-list
+        each song, index in topSongs  
+          .top-100-item
+            span.rank #{index + 1}
+            img(src=song.image, alt=song.title)
+            h3= song.title
+            p= song.artist
+            button.play-button
+              i.fas.fa-play
+
+    .topic-section
+      h2 Hot Topics
+      .topic-grid
+        each topic in topics
+          .topic-item
+            img(src= topic.image, alt=topic.title)
+            h3= topic.title
+            button.play-button
+              i.fas.fa-play
+
+    .playlist-section
+      h2 Playlist
+      .playlist-grid
+        each playlist in playlists
+          .playlist-item
+            img(src=playlist.image, alt=playlist.title)
+            h3= playlist.title
+            button.play-button
+              i.fas.fa-play
+

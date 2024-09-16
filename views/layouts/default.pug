@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Melody Stream
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+        link(rel="stylesheet", href="/css/style.css")
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet")
+    body
+        header.header
+            .container
+                .header__wrapper
+                    .header__logo
+                        a(href="/")
+                            img(src="https://res.cloudinary.com/djluoax2m/image/upload/v1722008796/vpqcxgubtaahwl3pz7cq.jpg", alt="Melody Stream Logo")
+                    nav.header__nav
+                        ul
+                            li
+                                a.no-underline(href="/")
+                                    i.fas.fa-home
+                                    span  Home
+                            li
+                                a.no-underline(href="/explore")
+                                    i.fas.fa-compass
+                                    span  Explore
+                            li
+                                a.no-underline(href="/playlists")
+                                    i.fas.fa-list
+                                    span  Playlists
+                            li
+                                a.no-underline(href="/artists")
+                                    i.fas.fa-microphone-alt
+                                    span  Artists
+                    .header__actions
+                        .header__search
+                            input(type="text", placeholder="Search...")
+                            button(type="submit"): i.fas.fa-search
+                        .header__user
+                            if user
+                                a.no-underline(href="/profile")
+                                    i.fas.fa-user
+                                    span #{user.name}
+                            else
+                                a.btn.btn-login(href="/login") Login
+
+        main.main-content
+            .container
+                block content
+
+        footer.footer
+            .container
+                .footer__grid
+                    .footer__column
+                        h3 Quick Links
+                        ul
+                            li: a(href="/about") About Us
+                            li: a(href="/contact") Contact
+                            li: a(href="/terms") Terms of Use
+                            li: a(href="/privacy") Privacy Policy
+                    .footer__column
+                        h3 Connect with Us
+                        .social-icons
+                            a(href="#"): i.fab.fa-facebook
+                            a(href="#"): i.fab.fa-twitter
+                            a(href="#"): i.fab.fa-instagram
+                            a(href="#"): i.fab.fa-youtube
+                    .footer__column
+                        h3 Subscribe to Our Newsletter
+                        form.newsletter-form(action="/subscribe", method="POST")
+                            input(type="email", placeholder="Enter your email")
+                            button.btn.btn-primary(type="submit") Subscribe
+            .footer__bottom
+                .container
+                    p &copy; 2024 Melody Stream. All rights reserved.
+
+        script(src="/js/main.js")
