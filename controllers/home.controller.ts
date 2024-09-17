@@ -10,7 +10,7 @@ export const index = async (req: Request, res: Response) => {
         const topSongs = await Song.find().sort({ like: -1 }).limit(6);
         const topics = await Topic.find().sort({ createdAt: -1 }).limit(5);
         const playlists = await Playlist.find().sort({ createdAt: -1 }).limit(5);
-        res.render("home/index", {
+        res.render("./pages/home/index", {
             title: "Home",
             featuredSongs: featuredSongs,
             newSongs: newSongs,

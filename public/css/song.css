@@ -1,0 +1,131 @@
+.song-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .song-header {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .song-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .song-info {
+    margin-left: 20px;
+  }
+  
+  .song-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .song-artist, .song-topic {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .song-stats {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .play-count, .like-count {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .play-count i, .like-count i {
+    margin-right: 5px;
+  }
+  
+  .player-container {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .player-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  #progress {
+    flex-grow: 1;
+  }
+  
+  .volume-control {
+    display: flex;
+    align-items: center;
+  }
+  
+  #volume-slider {
+    width: 80px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .btn-primary {
+    background-color: #0d88f3;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .lyrics-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .lyrics {
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  [button-like] {
+    transition: all 0.3s ease;
+  }
+  
+  [button-like]:hover {
+    transform: scale(1.05);
+  }
+  
+ 
+  [button-like].liked i {
+    color: #f40505;
+  }

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slugify from "slugify";
 
 const songSchema = new mongoose.Schema({
     title: {
@@ -33,10 +34,19 @@ const songSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    
-    
-},{
-    timestamps: true,   
+    slug: {
+        type: String,
+        unique: true,
+    },
+}, {
+    timestamps: true,
+});
+
+songSchema.pre('save', function(next) {
+    if (this.isModified('title')) {
+        this.slug = slugify(this.title, { lower: true, strict: true });
+    }
+    next();
 });
 
 const Song = mongoose.model("Song", songSchema, "songs");

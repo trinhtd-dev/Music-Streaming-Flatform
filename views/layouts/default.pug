@@ -4,9 +4,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Melody Stream
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
         link(rel="stylesheet", href="/css/style.css")
-        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        block styles
     body
         header.header
             .container
@@ -24,12 +24,16 @@ html(lang="en")
                                 a.no-underline(href="/explore")
                                     i.fas.fa-compass
                                     span  Explore
+                            li 
+                                a.no-underline(href="/music/songs")
+                                    i.fas.fa-music
+                                    span  Songs
                             li
-                                a.no-underline(href="/playlists")
+                                a.no-underline(href="/music/playlists")
                                     i.fas.fa-list
                                     span  Playlists
                             li
-                                a.no-underline(href="/artists")
+                                a.no-underline(href="/music/artists")
                                     i.fas.fa-microphone-alt
                                     span  Artists
                     .header__actions
@@ -73,5 +77,8 @@ html(lang="en")
             .footer__bottom
                 .container
                     p &copy; 2024 Melody Stream. All rights reserved.
-
-        script(src="/js/main.js")
+    
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js")
+    script(src="/js/script.js")
+    block scripts
+        

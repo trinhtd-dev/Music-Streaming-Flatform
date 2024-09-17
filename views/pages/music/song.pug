@@ -1,0 +1,52 @@
+extends ../../layouts/default
+
+block styles
+  link(rel="stylesheet", href="/css/song.css")
+
+block content
+  .song-detail-container
+    .song-header
+      .song-image
+        img(src=song.image, alt=song.title)
+      .song-info
+        h1.song-title= song.title
+        p.song-artist= song.artist
+          p.song-topic= topic.title
+        .song-stats
+          span.play-count
+            i.fas.fa-play
+            | #{song.playCount} plays
+          span.like-count
+            i.fas.fa-heart
+            span#like-count= song.like 
+    
+    .player-container
+      .player-controls
+        button#play-pause.control-btn(data-audio-url=song.audio)
+          i.fas.fa-play
+        input#progress(type="range", min="0", max="100", value="0")
+        span#current-time 0:00
+        span#duration 0:00
+        .volume-control
+          button#volume.control-btn
+            i.fas.fa-volume-up
+          input#volume-slider(type="range", min="0", max="1", step="0.1", value="1")
+    
+    .action-buttons(data-slug=song.slug)
+      button.btn.btn-primary(button-like)
+        i.fas.fa-heart
+        | Like
+      button.btn.btn-secondary
+        i.fas.fa-plus
+        | Add to Playlist
+      button.btn.btn-secondary
+        i.fas.fa-share
+        | Share
+    
+    .lyrics-container
+      h2 Lyrics
+      pre.lyrics= song.lyrics
+
+block scripts
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js")
+  script(src="/js/song-player.js")

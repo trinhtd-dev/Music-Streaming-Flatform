@@ -1,0 +1,28 @@
+extends ../../layouts/default
+
+block styles
+  link(rel="stylesheet", href="/css/music.css")
+
+block content
+  .songs-page
+    .songs-container 
+      h1.page-title Songs
+      .song-grid
+        each song in songs
+          .song-card
+            a(href=`/music/songs/${song.slug}`)
+              .song-image
+                  img(src=song.image, alt=song.title)
+                  .play-overlay
+                  button.play-button
+                      i.fas.fa-play
+              .song-info
+                  h3.song-title= song.title
+                  p.song-artist= song.artist
+                  
+            .song-actions
+              button.like-button
+                i.fas.fa-heart
+                span.like-count= song.like
+              button.add-to-playlist
+                i.fas.fa-plus
