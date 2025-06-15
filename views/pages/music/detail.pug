@@ -1,7 +1,12 @@
 extends ../../layouts/default
 
 block content
-  .page-content
+  .page-content.song-detail-page(
+    data-song-src=song.audio
+    data-song-title=song.title
+    data-song-artist=song.artist
+    data-song-image=song.image
+  )
     .song-detail-header
       .song-cover-art
         img(src=song.image, alt=song.title)
@@ -10,9 +15,11 @@ block content
         h1.song-title= song.title
         p.song-artist= song.artist
     
-    .song-player-controls
-      button.play-main-button
+    //- This button will now trigger the global player
+    button.play-main-button#play-this-song-button
         i.fas.fa-play
+
+    .song-player-controls
       button.like-button
         i.far.fa-heart
       button.options-button

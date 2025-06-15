@@ -53,5 +53,42 @@ html(lang="en")
 
                 block content
 
-        //- Script for interactivity (optional, for later)
+        //- Global Player Bar
+        .player-bar
+            .player-bar__left
+                .player-song-art
+                    img(src="", alt="")
+                .player-song-info
+                    .song-title Now Playing
+                    .song-artist Select a song
+            
+            .player-bar__center
+                .player-controls
+                    button.control-button.shuffle
+                        i.fas.fa-random
+                    button.control-button.prev
+                        i.fas.fa-step-backward
+                    button.control-button.play-main#global-play-button
+                        i.fas.fa-play
+                    button.control-button.next
+                        i.fas.fa-step-forward
+                    button.control-button.repeat
+                        i.fas.fa-redo
+
+                .player-progress
+                    span.current-time 0:00
+                    .progress-bar-wrapper
+                        .progress-bar
+                    span.duration 0:00
+
+            .player-bar__right
+                //- Volume controls placeholder
+                i.fas.fa-volume-up
+                .volume-bar-wrapper
+                    .volume-bar
+
+        //- Global Audio Element
+        audio#global-audio-player
+
+        //- Script for interactivity
         script(src="/js/main.js")

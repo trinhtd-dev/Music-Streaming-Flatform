@@ -6,11 +6,17 @@ block content
       h2 Featured
       .featured-grid
         each song in featuredSongs
-          a.featured-item(href=`/songs/${song.slug}`)
-            img(src=song.image, alt=song.title)
-            .content
-              h3= song.title
-              p= song.artist
+          .featured-item.playable(
+            data-song-src=song.audio
+            data-song-title=song.title
+            data-song-artist=song.artist
+            data-song-image=song.image
+          )
+            a(href=`/songs/${song.slug}`)
+              img(src=song.image, alt=song.title)
+              .content
+                h3= song.title
+                p= song.artist
             button.play-button
               i.fas.fa-play
 
@@ -18,22 +24,34 @@ block content
       h2 New Release 
       .new-releases-grid
         each song in newSongs
-          a.featured-item(href=`/songs/${song.slug}`)
-            img(src=song.image, alt=song.title)
-            h3= song.title
-            p= song.artist
-            button.play-button
-              i.fas.fa-play  
+          .featured-item.playable(
+            data-song-src=song.audio
+            data-song-title=song.title
+            data-song-artist=song.artist
+            data-song-image=song.image
+          )
+            a(href=`/songs/${song.slug}`)
+              img(src=song.image, alt=song.title)
+              h3= song.title
+              p= song.artist
+              button.play-button
+                i.fas.fa-play  
     .top-100-section
       h2 Top 100
       .top-100-list
         each song, index in topSongs
-          a.top-100-item(href=`/songs/${song.slug}`)
-            span.rank #{index + 1}
-            img(src=song.image, alt=song.title)
-            div
-              h3= song.title
-              p= song.artist
+          .top-100-item.playable(
+            data-song-src=song.audio
+            data-song-title=song.title
+            data-song-artist=song.artist
+            data-song-image=song.image
+          )
+            a(href=`/songs/${song.slug}`)
+              span.rank #{index + 1}
+              img(src=song.image, alt=song.title)
+              div
+                h3= song.title
+                p= song.artist
             button.play-button
               i.fas.fa-play
 
