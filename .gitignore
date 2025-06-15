@@ -38,3 +38,5 @@ yarn.lock
 # Bỏ qua thư mục coverage
 coverage/
 .vercel
+
+/.cursor
