@@ -4,6 +4,7 @@ import homeRouter from "./home.route";
 import musicRouter from "./music.route";
 import authRouter from "./auth.route";
 import playlistRouter from "./playlist.route";
+import searchRouter from "./search.route";
 
 export const routeIndex = (app: Application) => {
   // Client-side routes
@@ -14,4 +15,5 @@ export const routeIndex = (app: Application) => {
   app.use(`${apiPrefix}/music`, musicRouter);
   app.use(`${apiPrefix}/auth`, authRouter);
   app.use(`${apiPrefix}/playlists`, playlistRouter);
+  app.use(`${apiPrefix}/search`, searchRouter);
 };
