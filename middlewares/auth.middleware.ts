@@ -3,10 +3,10 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 // Extend the Request type to include the user payload
 export interface AuthRequest extends Request {
-  user?: { id: string; email: string };
+  user?: { id: string; email: string; role: string };
 }
 
-export const protect = (
+export const protect = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
@@ -30,10 +30,10 @@ export const protect = (
       // Verify token
       const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
 
-      // We expect the token to have id and email
-      if (decoded.id && decoded.email) {
+      // We expect the token to have id, email, and role
+      if (decoded.id && decoded.email && decoded.role) {
         // Attach user payload to the request object
-        req.user = { id: decoded.id, email: decoded.email };
+        req.user = { id: decoded.id, email: decoded.email, role: decoded.role };
         next();
       } else {
         return res
@@ -48,5 +48,13 @@ export const protect = (
 
   if (!token) {
     res.status(401).json({ message: "Not authorized, no token" });
+  }
+};
+
+export const admin = (req: AuthRequest, res: Response, next: NextFunction) => {
+  if (req.user && req.user.role === "admin") {
+    next();
+  } else {
+    res.status(403).json({ message: "Forbidden: Admin access required" });
   }
 };

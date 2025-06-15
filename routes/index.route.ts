@@ -8,6 +8,9 @@ import searchRouter from "./search.route";
 import artistRouter from "./artist.route";
 import topicRouter from "./topic.route";
 
+// Admin routes
+import adminSongRouter from "./admin/song.route";
+
 export const routeIndex = (app: Application) => {
   // Client-side routes
   app.use("/", homeRouter);
@@ -20,4 +23,8 @@ export const routeIndex = (app: Application) => {
   app.use(`${apiPrefix}/search`, searchRouter);
   app.use(`${apiPrefix}/artists`, artistRouter);
   app.use(`${apiPrefix}/topics`, topicRouter);
+
+  // Admin routes
+  const adminApiPrefix = "/api/admin";
+  app.use(`${adminApiPrefix}/songs`, adminSongRouter);
 };
