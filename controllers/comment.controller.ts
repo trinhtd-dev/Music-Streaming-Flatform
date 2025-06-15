@@ -21,6 +21,10 @@ export const getCommentsForSong = async (req: AuthRequest, res: Response) => {
 // @route   POST /api/music/songs/:songId/comments
 export const addCommentToSong = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
+
     const { songId } = req.params;
     const { content } = req.body;
 

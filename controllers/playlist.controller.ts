@@ -7,6 +7,9 @@ import Song from "../models/song.model";
 // @route   GET /api/playlists
 export const getMyPlaylists = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const playlists = await Playlist.find({ user: req.user.id });
     res.status(200).json(playlists);
   } catch (error) {
@@ -18,6 +21,9 @@ export const getMyPlaylists = async (req: AuthRequest, res: Response) => {
 // @route   POST /api/playlists
 export const createPlaylist = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const { name, description } = req.body;
     const playlist = new Playlist({
       name,
@@ -55,6 +61,9 @@ export const getPlaylistById = async (req: AuthRequest, res: Response) => {
 // @route   PUT /api/playlists/:id
 export const updatePlaylist = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const playlist = await Playlist.findById(req.params.id);
 
     if (!playlist) {
@@ -80,6 +89,9 @@ export const updatePlaylist = async (req: AuthRequest, res: Response) => {
 // @route   DELETE /api/playlists/:id
 export const deletePlaylist = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const playlist = await Playlist.findById(req.params.id);
 
     if (!playlist) {
@@ -102,6 +114,9 @@ export const deletePlaylist = async (req: AuthRequest, res: Response) => {
 // @route   POST /api/playlists/:id/songs
 export const addSongToPlaylist = async (req: AuthRequest, res: Response) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const { songId } = req.body;
     const playlist = await Playlist.findById(req.params.id);
 
@@ -139,6 +154,9 @@ export const removeSongFromPlaylist = async (
   res: Response
 ) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
     const playlist = await Playlist.findById(req.params.id);
     const { songId } = req.params;
 

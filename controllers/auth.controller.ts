@@ -31,6 +31,12 @@ export const register = async (req: Request, res: Response) => {
 // [POST] /api/auth/login
 export const login = async (req: Request, res: Response) => {
   try {
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      console.error("FATAL ERROR: JWT_SECRET is not defined.");
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -45,7 +51,7 @@ export const login = async (req: Request, res: Response) => {
 
     const token = jwt.sign(
       { id: user._id, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
+      jwtSecret,
       { expiresIn: "1h" }
     );
 
