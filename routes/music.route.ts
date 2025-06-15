@@ -6,6 +6,7 @@ import commentRouter from "./comment.route";
 const router = Router();
 
 // --- Discovery Routes ---
+router.get("/featured", musicController.getFeaturedSongs);
 router.get("/new-releases", musicController.getNewReleases);
 router.get("/most-liked", musicController.getMostLiked);
 

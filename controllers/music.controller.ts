@@ -53,6 +53,19 @@ export const likeSong = async (req: Request, res: Response) => {
   }
 };
 
+// @desc    Get featured songs
+// @route   GET /api/music/featured
+export const getFeaturedSongs = async (req: Request, res: Response) => {
+  try {
+    const songs = await Song.find({ featured: true })
+      .limit(10) // Limit to 10 featured songs
+      .select("-lyrics");
+    res.status(200).json(songs);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
 // @desc    Get new release songs
 // @route   GET /api/music/new-releases
 export const getNewReleases = async (req: Request, res: Response) => {
