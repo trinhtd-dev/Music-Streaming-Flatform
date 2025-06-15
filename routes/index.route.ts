@@ -9,6 +9,7 @@ import playlistRouter from "./playlist.route";
 import searchRouter from "./search.route";
 import artistRouter from "./artist.route";
 import topicRouter from "./topic.route";
+import userRouter from "./user.route";
 
 // Admin routes
 import adminSongRouter from "./admin/song.route";
@@ -27,6 +28,7 @@ export const routeIndex = (app: Application) => {
   app.use(`${apiPrefix}/search`, searchRouter);
   app.use(`${apiPrefix}/artists`, artistRouter);
   app.use(`${apiPrefix}/topics`, topicRouter);
+  app.use(`${apiPrefix}/users`, userRouter);
 
   // Admin routes
   const adminApiPrefix = "/api/admin";

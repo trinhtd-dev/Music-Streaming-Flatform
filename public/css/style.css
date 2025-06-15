@@ -472,6 +472,25 @@ main.main-content {
   cursor: pointer;
 }
 
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #282828;
+  padding: 5px 15px 5px 5px;
+  border-radius: 50px;
+}
+
+.user-menu span {
+  font-weight: 500;
+}
+
+.user-menu button {
+  background-color: #121212;
+  color: #ffffff;
+  border: 1px solid #535353;
+}
+
 /* Page Content Wrapper */
 .page-content {
   padding: 20px 30px;
