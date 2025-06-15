@@ -48,9 +48,14 @@ html(lang="en")
                         i.fas.fa-search
                         input(type="text", placeholder="Search for artists, songs, or podcasts")
                     .user-profile
-                        // This will be dynamically updated by JS
-                        a(href="/login")
-                            button Login
+                        if user
+                            .user-menu
+                                span= user.fullName
+                                a(href="/logout")
+                                    button#logout-button Logout
+                        else
+                            a(href="/login")
+                                button Login
 
                 block content
 

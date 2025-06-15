@@ -1,0 +1,18 @@
+extends ../../layouts/default
+
+block content
+  .page-content
+    .library-header
+      h1 Your Library
+    
+    if playlists.length > 0
+      .playlist-section
+        h2 Playlists
+        .playlist-grid
+          each playlist in playlists
+            a.playlist-item(href=`/playlists/${playlist.id}`)
+              img(src=playlist.image || "https://res.cloudinary.com/djluoax2m/image/upload/v1722008796/vpqcxgubtaahwl3pz7cq.jpg", alt=playlist.name)
+              h3= playlist.name
+              p By #{user.fullName}
+    else
+        p You haven't created any playlists yet. 
