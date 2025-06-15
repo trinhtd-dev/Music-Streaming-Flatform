@@ -136,14 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
 
-          if (result.token) {
-            // On successful login, store token and redirect
-            localStorage.setItem("authToken", result.token);
-            window.location.href = "/";
-          } else {
-            // On successful registration, redirect to login
-            window.location.href = "/login";
-          }
+          // On successful login or registration, redirect to home
+          window.location.href = "/";
         } catch (error) {
           messageEl.textContent = "Could not connect to the server.";
         }
@@ -154,49 +148,16 @@ document.addEventListener("DOMContentLoaded", () => {
   handleAuthForm("login-form", "/api/auth/login");
   handleAuthForm("register-form", "/api/auth/register");
 
-  // --- Update UI based on Auth State ---
-  const updateUserUI = async () => {
-    const token = localStorage.getItem("authToken");
-    const userProfileContainer = document.querySelector(".user-profile");
-
-    if (!token) {
-      // Not logged in, ensure login button is shown
-      userProfileContainer.innerHTML = `<a href="/login"><button>Login</button></a>`;
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/users/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        // Token is invalid or expired
-        localStorage.removeItem("authToken");
-        userProfileContainer.innerHTML = `<a href="/login"><button>Login</button></a>`;
-        return;
+  // --- Search Bar ---
+  const searchBar = document.querySelector(".app-header .search-bar input");
+  if (searchBar) {
+    searchBar.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const query = searchBar.value;
+        if (query) {
+          window.location.href = `/search?q=${encodeURIComponent(query)}`;
+        }
       }
-
-      const user = await response.json();
-
-      // Logged in, show user info and logout button
-      userProfileContainer.innerHTML = `
-        <div class="user-menu">
-          <span>${user.fullName}</span>
-          <button id="logout-button">Logout</button>
-        </div>
-      `;
-
-      document.getElementById("logout-button").addEventListener("click", () => {
-        localStorage.removeItem("authToken");
-        window.location.href = "/login";
-      });
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-    }
-  };
-
-  updateUserUI();
+    });
+  }
 });

@@ -4,6 +4,7 @@ import homeRouter from "./home.route";
 import songPageRouter from "./pages/song.route";
 import authPageRouter from "./pages/auth.route";
 import libraryPageRouter from "./pages/library.route";
+import searchPageRouter from "./pages/search.route";
 import musicRouter from "./music.route";
 import authRouter from "./auth.route";
 import playlistRouter from "./playlist.route";
@@ -21,6 +22,7 @@ export const routeIndex = (app: Application) => {
   app.use("/songs", songPageRouter);
   app.use("/", authPageRouter);
   app.use("/library", libraryPageRouter);
+  app.use("/search", searchPageRouter);
 
   // API routes
   const apiPrefix = "/api";

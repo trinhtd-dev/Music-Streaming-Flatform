@@ -1,0 +1,45 @@
+extends ../../layouts/default
+
+block content
+  .page-content
+    h1 Search results for "#{query}"
+
+    if songs.length === 0 && artists.length === 0 && topics.length === 0
+      p No results found. Please try another search.
+    else
+      if songs.length > 0
+        .search-result-section
+          h2 Songs
+          .top-100-list
+            each song in songs
+              .top-100-item.playable(
+                data-song-src=song.audio
+                data-song-title=song.title
+                data-song-artist=song.artist
+                data-song-image=song.image
+              )
+                a(href=`/songs/${song.slug}`)
+                  img(src=song.image, alt=song.title)
+                  div
+                    h3= song.title
+                    p= song.artist
+                button.play-button
+                  i.fas.fa-play
+      
+      if artists.length > 0
+        .search-result-section
+          h2 Artists
+          .featured-grid
+            each artist in artists
+              a.featured-item(href=`/artists/${artist.slug}`)
+                img(src=artist.avatar, alt=artist.name)
+                h3= artist.name
+      
+      if topics.length > 0
+        .search-result-section
+          h2 Topics
+          .topic-grid
+            each topic in topics
+              a.topic-item(href=`/topics/${topic.slug}`)
+                img(src=topic.image, alt=topic.title)
+                h3= topic.title 
