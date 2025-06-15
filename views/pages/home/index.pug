@@ -5,8 +5,8 @@ block content
     .featured-section
       h2 Featured
       .featured-grid
-        each song in featuredSongs 
-          .featured-item
+        each song in featuredSongs
+          a.featured-item(href=`/songs/${song.slug}`)
             img(src=song.image, alt=song.title)
             .content
               h3= song.title
@@ -17,8 +17,8 @@ block content
     .new-releases-section
       h2 New Release 
       .new-releases-grid
-        each song in newSongs 
-          .featured-item
+        each song in newSongs
+          a.featured-item(href=`/songs/${song.slug}`)
             img(src=song.image, alt=song.title)
             h3= song.title
             p= song.artist
@@ -27,12 +27,13 @@ block content
     .top-100-section
       h2 Top 100
       .top-100-list
-        each song, index in topSongs  
-          .top-100-item
+        each song, index in topSongs
+          a.top-100-item(href=`/songs/${song.slug}`)
             span.rank #{index + 1}
             img(src=song.image, alt=song.title)
-            h3= song.title
-            p= song.artist
+            div
+              h3= song.title
+              p= song.artist
             button.play-button
               i.fas.fa-play
 

@@ -1,0 +1,26 @@
+extends ../../layouts/default
+
+block content
+  .page-content
+    .song-detail-header
+      .song-cover-art
+        img(src=song.image, alt=song.title)
+      .song-info
+        p Song
+        h1.song-title= song.title
+        p.song-artist= song.artist
+    
+    .song-player-controls
+      button.play-main-button
+        i.fas.fa-play
+      button.like-button
+        i.far.fa-heart
+      button.options-button
+        i.fas.fa-ellipsis-h
+
+    .song-lyrics
+        h2 Lyrics
+        pre.lyrics-text= song.lyrics
+        
+    //- Audio player element
+    audio#song-audio(src=song.audio) 
