@@ -1,0 +1,22 @@
+extends ../../layouts/default
+
+block content
+  .page-content.auth-page
+    .auth-container
+      h1 Sign up for free to start listening.
+      form#register-form.auth-form
+        .form-group
+          label(for="fullName") Full Name
+          input(type="text", id="fullName", name="fullName", required)
+        .form-group
+          label(for="email") Email address
+          input(type="email", id="email", name="email", required)
+        .form-group
+          label(for="password") Create a password
+          input(type="password", id="password", name="password", required)
+        .form-message.error
+        button.btn-submit(type="submit") Sign Up
+      hr
+      .auth-alternative
+        span Already have an account? 
+        a(href="/login") Log in 

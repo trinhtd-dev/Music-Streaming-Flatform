@@ -2,6 +2,7 @@ import { Application } from "express";
 
 import homeRouter from "./home.route";
 import songPageRouter from "./pages/song.route";
+import authPageRouter from "./pages/auth.route";
 import musicRouter from "./music.route";
 import authRouter from "./auth.route";
 import playlistRouter from "./playlist.route";
@@ -16,6 +17,7 @@ export const routeIndex = (app: Application) => {
   // Client-side routes
   app.use("/", homeRouter);
   app.use("/songs", songPageRouter);
+  app.use("/", authPageRouter);
 
   // API routes
   const apiPrefix = "/api";

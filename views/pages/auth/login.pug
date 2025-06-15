@@ -1,0 +1,19 @@
+extends ../../layouts/default
+
+block content
+  .page-content.auth-page
+    .auth-container
+      h1 Log in to Melody Stream
+      form#login-form.auth-form
+        .form-group
+          label(for="email") Email address
+          input(type="email", id="email", name="email", required)
+        .form-group
+          label(for="password") Password
+          input(type="password", id="password", name="password", required)
+        .form-message.error
+        button.btn-submit(type="submit") Log In
+      hr
+      .auth-alternative
+        span Don't have an account? 
+        a(href="/register") Sign up for Melody Stream 

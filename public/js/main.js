@@ -109,4 +109,48 @@ document.addEventListener("DOMContentLoaded", () => {
       playSong(songData);
     });
   }
+
+  // --- Auth Form Handling ---
+  const handleAuthForm = async (formId, apiEndpoint) => {
+    const form = document.getElementById(formId);
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const messageEl = form.querySelector(".form-message");
+
+        try {
+          const response = await fetch(apiEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            messageEl.textContent = result.message || "An error occurred.";
+            return;
+          }
+
+          if (result.token) {
+            // On successful login, store token and redirect
+            localStorage.setItem("authToken", result.token);
+            window.location.href = "/";
+          } else {
+            // On successful registration, redirect to login
+            window.location.href = "/login";
+          }
+        } catch (error) {
+          messageEl.textContent = "Could not connect to the server.";
+        }
+      });
+    }
+  };
+
+  handleAuthForm("login-form", "/api/auth/login");
+  handleAuthForm("register-form", "/api/auth/register");
 });
