@@ -3,82 +3,55 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Melody Stream
+        title #{title} | Melody Stream
+        // Font Awesome for icons
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+        // Custom Stylesheet
         link(rel="stylesheet", href="/css/style.css")
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
-        block styles
     body
-        header.header
-            .container
-                .header__wrapper
-                    .header__logo
-                        a(href="/")
-                            img(src="https://res.cloudinary.com/djluoax2m/image/upload/v1722008796/vpqcxgubtaahwl3pz7cq.jpg", alt="Melody Stream Logo")
-                    nav.header__nav
-                        ul
-                            li
-                                a.no-underline(href="/")
-                                    i.fas.fa-home
-                                    span  Home
-                            li
-                                a.no-underline(href="/explore")
-                                    i.fas.fa-compass
-                                    span  Explore
-                            li 
-                                a.no-underline(href="/music/songs")
-                                    i.fas.fa-music
-                                    span  Songs
-                            li
-                                a.no-underline(href="/music/playlists")
-                                    i.fas.fa-list
-                                    span  Playlists
-                            li
-                                a.no-underline(href="/music/artists")
-                                    i.fas.fa-microphone-alt
-                                    span  Artists
-                    .header__actions
-                        .header__search
-                            input(type="text", placeholder="Search...")
-                            button(type="submit"): i.fas.fa-search
-                        .header__user
-                            if user
-                                a.no-underline(href="/profile")
-                                    i.fas.fa-user
-                                    span #{user.name}
-                            else
-                                a.btn.btn-login(href="/login") Login
+        .app-container
+            //- Sidebar placeholder
+            aside.sidebar
+                .logo Melody
+                nav
+                    ul
+                        li.active
+                            a(href="/") 
+                                i.fas.fa-home
+                                span Home
+                        li
+                            a(href="/explore") 
+                                i.fas.fa-compass
+                                span Explore
+                        li
+                            a(href="/library") 
+                                i.fas.fa-book
+                                span Your Library
+                hr
+                nav
+                    ul
+                        li
+                            a(href="/playlists/create")
+                                i.fas.fa-plus-square
+                                span Create Playlist
+                        li
+                            a(href="/liked-songs")
+                                i.fas.fa-heart
+                                span Liked Songs
 
-        main.main-content
-            .container
+
+            //- Main content block
+            main.main-content
+                //- Header placeholder
+                header.app-header
+                    .search-bar
+                        i.fas.fa-search
+                        input(type="text", placeholder="Search for artists, songs, or podcasts")
+                    .user-profile
+                        //- Logic for user logged in or not
+                        button Login
+
                 block content
 
-        footer.footer
-            .container
-                .footer__grid
-                    .footer__column
-                        h3 Quick Links
-                        ul
-                            li: a(href="/about") About Us
-                            li: a(href="/contact") Contact
-                            li: a(href="/terms") Terms of Use
-                            li: a(href="/privacy") Privacy Policy
-                    .footer__column
-                        h3 Connect with Us
-                        .social-icons
-                            a(href="#"): i.fab.fa-facebook
-                            a(href="#"): i.fab.fa-twitter
-                            a(href="#"): i.fab.fa-instagram
-                            a(href="#"): i.fab.fa-youtube
-                    .footer__column
-                        h3 Subscribe to Our Newsletter
-                        form.newsletter-form(action="/subscribe", method="POST")
-                            input(type="email", placeholder="Enter your email")
-                            button.btn.btn-primary(type="submit") Subscribe
-            .footer__bottom
-                .container
-                    p &copy; 2024 Melody Stream. All rights reserved.
-    
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js")
-    script(src="/js/script.js")
-    block scripts
-        
+        //- Script for interactivity (optional, for later)
+        script(src="/js/main.js")
