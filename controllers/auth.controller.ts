@@ -50,12 +50,24 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign(
-      { id: user._id, email: user.email, role: user.role },
+      {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+        fullName: user.fullName,
+      },
       jwtSecret,
       { expiresIn: "1h" }
     );
 
-    res.status(200).json({ token });
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+      sameSite: "strict",
+      maxAge: 3600000, // 1 hour
+    });
+
+    res.status(200).json({ message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }

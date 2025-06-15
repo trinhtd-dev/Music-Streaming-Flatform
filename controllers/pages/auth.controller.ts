@@ -13,3 +13,9 @@ export const renderRegisterPage = (req: Request, res: Response) => {
     title: "Sign Up",
   });
 };
+
+// [GET] /logout
+export const logout = (req: Request, res: Response) => {
+  res.clearCookie("authToken");
+  res.redirect("/login");
+};
